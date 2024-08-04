@@ -9,7 +9,7 @@ const Contact = () => {
     const [letterClass, setLetterClass] = useState('text-animate')
 
     const form = useRef()
-    const emailjs_api_key = 'process.env.REACT_APP_EMAILJS_API_KEY';
+    const emailjs_api_key = process.env.REACT_APP_EMAILJS_API_KEY;
 
     useEffect(() => {
         setTimeout(() => {
