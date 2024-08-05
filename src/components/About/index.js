@@ -33,17 +33,19 @@ const About = () => {
             />
           </h1>
           <p>
-            I'm a very ambitious software engineer looking for a role in an
-            established IT company/department with the opportunity to work with the latest
-            technologies on challenging and diverse projects.
+            I'm a very ambitious software engineer currently based in The Netherlands.I enjoy working with the latest
+            technologies and solving challenging problems to solve business needs.
           </p>
           <p align="LEFT">
-            I'm quietly confident (but not afraid to speak my mind), naturally curious, and continually looking to solve difficult business 
-            problems.
+            I'm quietly confident (but not afraid to speak my mind), naturally curious, and continually looking to improve processes.
           </p>
           <p>
             If I had to define myself in one sentence that would goal oriented, team player, a sports fanatic,
-            outdoor enthusiast, and tech-obsessed!!!
+            outdoor enthusiast.
+          </p>
+          <p>Next is a list of technologies/methodologies I currently work with:</p>
+          <p>.Net • C# • SQL • Github • Azure • React • JavaScript • HTML • CSS • RabbitMQ • Octopus • Github Actions • TeamCity
+          • TDD • DDD • Jira • Scrum • Microservice Architecture • API development • BitBucket • SSMS 
           </p>
         </div>
 

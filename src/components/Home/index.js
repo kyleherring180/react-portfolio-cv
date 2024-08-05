@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Loader from 'react-loaders'
 import AnimatedLetters from '../AnimatedLetters'
 import './index.scss'
+// import Skills from './Skills'
 
 const Home = () => {
   const [letterClass, setLetterClass] = useState('text-animate')
@@ -58,11 +59,14 @@ const Home = () => {
               idx={22}
             />
           </h1>
-          <h2>Backend End Developer / .Net Expert </h2>
+          <h2>Fullstack Developer / .Net Expert </h2>
           <Link to="/react-portfolio-cv/contact" className="flat-button">
             CONTACT ME
           </Link>
         </div>
+        {/* <div className='text-zone-skills'>
+          <Skills />
+        </div> */}
       </div>
       {/* <Logo /> */}
       <Loader type="pacman" />
