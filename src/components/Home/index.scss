@@ -69,6 +69,11 @@
       animation: fadeIn 1s 1.8s backwards;
     }
   
+    .button-container{
+      display: flex;
+      gap: 1rem;
+    }
+  
     .flat-button {
       color: #E62907;
       font-size: 13px;

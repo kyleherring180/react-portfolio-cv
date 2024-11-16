@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import Loader from 'react-loaders'
 import AnimatedLetters from '../AnimatedLetters'
 import './index.scss'
-// import Skills from './Skills'
 
 const Home = () => {
   const [letterClass, setLetterClass] = useState('text-animate')
@@ -43,33 +42,34 @@ const Home = () => {
           <h1>
             <span className={letterClass}>H</span>
             <span className={`${letterClass} _12`}>i,</span>
-            <br />
+            <br/>
             <span className={`${letterClass} _13`}>I</span>
             <span className={`${letterClass} _14`}>'m</span>
-           
+
             <AnimatedLetters
-              letterClass={letterClass}
-              strArray={nameArray}
-              idx={15}
+                letterClass={letterClass}
+                strArray={nameArray}
+                idx={15}
             />
-            <br />
+            <br/>
             <AnimatedLetters
-              letterClass={letterClass}
-              strArray={jobArray}
-              idx={22}
+                letterClass={letterClass}
+                strArray={jobArray}
+                idx={22}
             />
           </h1>
           <h2>Fullstack Developer / .Net Expert </h2>
-          <Link to="/react-portfolio-cv/contact" className="flat-button">
-            CONTACT ME
-          </Link>
+          <div className="button-container">
+            <Link to="/react-portfolio-cv/contact" className="flat-button">
+              CONTACT ME
+            </Link>
+            <Link to="/react-portfolio-cv/blog" className="flat-button">
+              BLOG
+            </Link>
+          </div>
         </div>
-        {/* <div className='text-zone-skills'>
-          <Skills />
-        </div> */}
       </div>
-      {/* <Logo /> */}
-      <Loader type="pacman" />
+      <Loader type="pacman"  active/>
     </>
   )
 }

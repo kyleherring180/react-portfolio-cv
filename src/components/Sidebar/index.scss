@@ -71,16 +71,28 @@
           transition: all 0.3s ease-out;
         }
   
-        &:first-child {
-          &:after {
-            content: 'HOME';
-          }
+        //&:first-child {
+        //  &:after {
+        //    content: 'HOME';
+        //  }
+        //}
+      }
+
+      a.home-link {
+        &:after {
+          content: 'HOME';
         }
       }
   
       a.about-link {
         &:after {
           content: 'ABOUT';
+        }
+      }
+
+      a.blog-link {
+        &:after {
+          content: 'BLOG';
         }
       }
   

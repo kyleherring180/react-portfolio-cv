@@ -45,9 +45,7 @@ const Contact = () => {
                         />
                     </h1>
                     <p>
-                        I am interested in new work opportunities - especially on ambitious
-                        or large projects in the Zurich area. However, if you have any other requests or
-                        questions, don't hesitate to contact me using below form either.
+                        Feel free to get in touch—whether it’s a project, a question, or just to say hello.
                     </p>
                     <div className="contact-form">
                         <form ref={form} onSubmit={sendEmail}>
