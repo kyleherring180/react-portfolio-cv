@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/react-portfolio-cv/static/css/main.672c101f.css",
-    "main.js": "/react-portfolio-cv/static/js/main.d08eefd0.js",
+    "main.css": "/react-portfolio-cv/static/css/main.fb70046e.css",
+    "main.js": "/react-portfolio-cv/static/js/main.c4056a3a.js",
     "static/js/453.b3faef14.chunk.js": "/react-portfolio-cv/static/js/453.b3faef14.chunk.js",
     "static/media/logo_sub_kh.png": "/react-portfolio-cv/static/media/logo_sub_kh.37a20455db691f1db56f.png",
     "static/media/helvetica-neu.ttf": "/react-portfolio-cv/static/media/helvetica-neu.8a19678078a6b21c8057.ttf",
@@ -9,12 +9,12 @@
     "static/media/CoolveticaRg-Regular.woff2": "/react-portfolio-cv/static/media/CoolveticaRg-Regular.7d1f3b1dd46ad6557a17.woff2",
     "static/media/Logo_C_sharp.svg": "/react-portfolio-cv/static/media/Logo_C_sharp.e2c0510d2b743a87e7621b703ba07906.svg",
     "index.html": "/react-portfolio-cv/index.html",
-    "main.672c101f.css.map": "/react-portfolio-cv/static/css/main.672c101f.css.map",
-    "main.d08eefd0.js.map": "/react-portfolio-cv/static/js/main.d08eefd0.js.map",
+    "main.fb70046e.css.map": "/react-portfolio-cv/static/css/main.fb70046e.css.map",
+    "main.c4056a3a.js.map": "/react-portfolio-cv/static/js/main.c4056a3a.js.map",
     "453.b3faef14.chunk.js.map": "/react-portfolio-cv/static/js/453.b3faef14.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.672c101f.css",
-    "static/js/main.d08eefd0.js"
+    "static/css/main.fb70046e.css",
+    "static/js/main.c4056a3a.js"
   ]
 }
