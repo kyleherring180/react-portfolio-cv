@@ -40,12 +40,12 @@ const About = () => {
             I'm quietly confident (but not afraid to speak my mind), naturally curious, and continually looking to improve processes.
           </p>
           <p>
-            If I had to define myself in one sentence that would goal oriented, team player, a sports fanatic,
-            outdoor enthusiast.
+            If I had to define myself in one sentence, I would say I am a 
+            goal-oriented team player, a sports fanatic, and an outdoor enthusiast.
           </p>
           <p>Next is a list of technologies/methodologies I currently work with:</p>
-          <p>.Net • C# • SQL • Github • Azure • React • JavaScript • HTML • CSS • RabbitMQ • Octopus • Github Actions • TeamCity
-          • TDD • DDD • Jira • Scrum • Microservice Architecture • API development • BitBucket • SSMS 
+          <p>.Net • C# • SQL • Github • Azure • React • JavaScript • HTML • CSS • RabbitMQ • Octopus • Github Actions 
+            • TeamCity • TDD • DDD • Jira • Scrum • Microservice Architecture • API development • BitBucket • SSMS 
           </p>
         </div>
 
