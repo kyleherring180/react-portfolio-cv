@@ -21,28 +21,28 @@ const IntegrationTestsContainersBlog = () => {
             <AnimatedLetters
               letterClass={letterClass}
               strArray={[
-                "Integration",
-                " ",
-                "Tests",
-                " ",
-                "using",
-                " ",
-                "Test",
-                " ",
-                "Containers",
-                " ",
-                "for",
-                " ",
-                ".Net",
-                " ",
-                "and",
-                " ",
-                "Microsoft",
-                " ",
-                "SQL",
-                " ",
-                "Server",
-                "."
+                'Integration',
+                ' ',
+                'Tests',
+                ' ',
+                'using',
+                ' ',
+                'Test',
+                ' ',
+                'Containers',
+                ' ',
+                'for',
+                ' ',
+                '.Net',
+                ' ',
+                'and',
+                ' ',
+                'Microsoft',
+                ' ',
+                'SQL',
+                ' ',
+                'Server',
+                '.',
               ]
               }
               idx={25}
@@ -123,7 +123,8 @@ const IntegrationTestsContainersBlog = () => {
           <p>
             One solution to maintain a clean test state is to run each test in a transaction and roll it back after
             completion. However, this doesn’t solve the problem of external data contamination in the localdb.
-            Alternatively, you could use the <code className="code-highlight">IAsyncLifetime</code> interface from xUnit to run a delete script and
+            Alternatively, you could use the <code className="code-highlight">IAsyncLifetime</code> interface from xUnit
+            to run a delete script and
             clear the database before each test. While functional, this approach feels clunky and error-prone.
           </p>
 
@@ -189,7 +190,7 @@ const IntegrationTestsContainersBlog = () => {
             library.
             This can be done using the UI or by running the following command:
           </p>
-          
+
           <code className="code-highlight">dotnet add package Testcontainers.MsSql</code>
 
           <p>
@@ -199,11 +200,12 @@ const IntegrationTestsContainersBlog = () => {
             each
             test. This required initializing the container before the tests began running. To manage this setup, I used
             the{' '}
-            <code className="code-highlight">IClassFixture&lt;&gt;</code> interface from xUnit. Here’s the fixture implementation:
+            <code className="code-highlight">IClassFixture&lt;&gt;</code> interface from xUnit. Here’s the fixture
+            implementation:
           </p>
 
           <SyntaxHighlighter language="csharp" style={coldarkDark}>
-              {`using Testcontainers.MsSql;
+            {`using Testcontainers.MsSql;
       
 namespace ContainerIntegrationTestsDemo.IntegrationTests.Helpers;
 
@@ -223,14 +225,16 @@ public class MsSqlContainerFixture : IAsyncLifetime
   }
 }`}
           </SyntaxHighlighter>
-          
+
           <p>
-            The <code className="code-highlight">MsSqlContainerFixture</code> initializes a new container before any tests begin execution and ensures 
-            the container is fully started before the tests run. Once all tests have finished, the fixture shuts 
-            down the container. Next, we will add the fixture to our test class and implement the <code className="code-highlight">IAsyncLifetime</code>
+            The <code className="code-highlight">MsSqlContainerFixture</code> initializes a new container before any
+            tests begin execution and ensures
+            the container is fully started before the tests run. Once all tests have finished, the fixture shuts
+            down the container. Next, we will add the fixture to our test class and implement the <code
+            className="code-highlight">IAsyncLifetime</code>
             interface.
           </p>
-          
+
           <SyntaxHighlighter language="csharp" style={coldarkDark}>
             {`namespace ContainerIntegrationTestsDemo.IntegrationTests;
 
@@ -246,22 +250,22 @@ public class IntegrationTest1 : IClassFixture<MsSqlContainerFixture>, IAsyncLife
         _output = output;
         _msSqlContainer = msSqlContainerFixture.MsSqlContainer;
     }`}
-            
+
           </SyntaxHighlighter>
           <p>
-            Before execution, each test will call the <code className="code-highlight">InitializeAsync</code> 
-            method, where all necessary setup for the test should be performed. In my case, I needed to create 
-            a new database for each test to ensure a clean slate and avoid interference from external data 
-            manipulation. To achieve this, I used the <code className="code-highlight">Guid.NewGuid()</code> 
+            Before execution, each test will call the <code className="code-highlight">InitializeAsync</code>
+            method, where all necessary setup for the test should be performed. In my case, I needed to create
+            a new database for each test to ensure a clean slate and avoid interference from external data
+            manipulation. To achieve this, I used the <code className="code-highlight">Guid.NewGuid()</code>
             method to generate unique database names.
 
             The <code className="code-highlight">MsSqlContainer</code> class provides a
-            <code className="code-highlight">GetConnectionString()</code> method, which by default connects to the 
-            master database. To use a different database, we need to specify the desired database name. While 
+            <code className="code-highlight">GetConnectionString()</code> method, which by default connects to the
+            master database. To use a different database, we need to specify the desired database name. While
             there are various ways to construct a connection string, I opted to use the reliable
             <code className="code-highlight">SqlConnectionStringBuilder</code> class.
 
-            Finally, I added an extension method to integrate the 
+            Finally, I added an extension method to integrate the
             <code className="code-highlight">MsSqlContainer</code> with the
             <code className="code-highlight">ServiceCollection</code>,
             allowing it to accept the new connection string as a parameter.
@@ -292,9 +296,9 @@ public class IntegrationTest1 : IClassFixture<MsSqlContainerFixture>, IAsyncLife
             `}
           </SyntaxHighlighter>
           <p>
-            And the <code className="code-highlight">AddMsSqlTestContainer</code> Extension method follows below. 
+            And the <code className="code-highlight">AddMsSqlTestContainer</code> Extension method follows below.
             I also created a separate <code className="code-highlight">TestDataRepository</code> specifically
-            for my tests. 
+            for my tests.
           </p>
           <SyntaxHighlighter language="csharp" style={coldarkDark}>
             {`
@@ -314,7 +318,7 @@ public static class ServiceCollectionExtensions
           <p>
             After building up my <code className="code-highlight">ServiceProvider</code>, the database for
             that particular test should be created. I then apply the migrations to the database. Now we have
-            a clean working Microsoft SQL Server database that the test can query against. 
+            a clean working Microsoft SQL Server database that the test can query against.
           </p>
           <p>
             For my example test I provide an input xml file and an expected output JSON file. I consume
@@ -322,6 +326,52 @@ public static class ServiceCollectionExtensions
             customer to the database. The test then queries the database for this new customer and deserializes
             the expected JSON into the Customer class. Finally, I use FluentAssertions to compare the two objects.
           </p>
+
+          <h2>Performance concerns and resolutions</h2>
+          
+          <p>
+            After implementing the above method for a recent project, I encountered performance issues when 
+            spinning up multiple databases per test. Creating a new database for each test required significant 
+            processing overhead. To address this, I decided to pivot and clear the database before every test 
+            instead of creating a new one each time.
+
+            Using a SQL script to delete all the data from every table felt clunky and error-prone. I wanted a 
+            more programmatic approach that would automatically account for new entities without requiring 
+            manual updates to the tests. Below is the solution I arrived at, leveraging EF Core's built-in 
+            methods and some reflection.
+          </p>
+          
+          <SyntaxHighlighter language="csharp" style={coldarkDark}>
+            {`
+    public async Task ClearDatabase()
+    {
+        foreach (var entityType in dbContext.Model.GetEntityTypes().Where(x => !x.IsOwned()))
+        {
+            var clrType = entityType.ClrType;
+            
+            //Use reflection to call the generic Set<TEntity>() method on DbContext
+            var method = typeof(DbContext)
+                .GetMethods()
+                .First(m => m.Name == "Set" && m.IsGenericMethod && m.GetParameters().Length == 0)
+                .MakeGenericMethod(clrType);
+
+            var dbSet = method.Invoke(dbContext, null) as IQueryable;
+
+            if (dbSet != null)
+            {
+                //dbSet is now an IQueryable which can be used to get all the entities.
+                var entities = dbSet.Cast<object>().ToList();
+                
+                //Use RemoveRange to remove all entities of this type
+                dbContext.RemoveRange(entities);
+            }
+        }
+
+        await dbContext.SaveChangesAsync();
+    }
+            `}
+          </SyntaxHighlighter>
+
           <p>
             And that is it! You now have an Integration Test that is querying against a Microsoft SQL Server in a
             docker container. I hope you found this post useful. If you have any comments or thoughts, please feel

@@ -144,57 +144,77 @@
   .hamburger-icon, .close-icon {
     display: none;
   }
-  
-  
-  @media screen and (max-width: 1200px) {
-    .nav-bar { 
-      background: transparent;
-      position: initial;
-      height: auto;
-      min-height: auto;
-  
-       ul, nav {
-        display: none;
-       }
-  
-       nav {
-        width: 100%;
-        top: 0;
-        left: 0;
-        background: #181818;
+
+
+@media screen and (max-width: 1200px) {
+  .nav-bar {
+    display: flex;
+    background: #181818; /* Keep the original background color */
+    position: fixed; /* Fix the nav-bar to the top */
+    height: 50px; /* Adjust height for a horizontal layout */
+    width: 100%; /* Span the entire width of the screen */
+    min-height: 50px; /* Remove minimum height for vertical alignment */
+    top: 0; /* Align the nav-bar to the top */
+    z-index: 3; /* Ensure it stays above other content */
+
+    .logo {
+      display: flex; /* Inline for horizontal layout */
+      margin: 0 0;
+      left: 0;
+      height: 100%;
+      padding: 0 0;
+
+      img {
+        width: 50px; /* Resize logo to fit horizontally */
+        margin: 0 0;
         height: 100%;
-        margin: 0;
-        z-index: 2;
-        position: fixed;
-  
-        &.mobile-show {
-          display: block;
-        }
-  
-        a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-  
-        a:after {
-          opacity: 1;
-          position: initial;
-          width: auto;
-          margin-left: 10PX;
-        }
-  
-        a svg {
-          opacity: 1 !important;
-        }
-       }
-  
-       .hamburger-icon,
-       .close-icon {
-          position: absolute;
-          top: 15px;
-          right: 15px;
-          display: block;
-       }
+      }
+    }
+
+    nav {
+      display: flex; /* Flexbox layout for horizontal alignment */
+      justify-content: center; /* Center items horizontally */
+      align-items: center; /* Center items vertically */
+      margin-top: 0;
+      height: 100%; /* Match the nav-bar's height */
+      position: unset;
+      width: 50%;
+
+      a {
+        font-size: 16px; /* Adjust font size for smaller screens */
+        padding: 0 10px; /* Add horizontal spacing between items */
+        text-decoration: none;
+      }
+
+      a:after {
+        display: none; /* Optionally hide after-content (hover text) on mobile */
+      }
+      
+      a.home-link{
+        padding: 0 10px;
+      }
+    }
+
+    ul {
+      display: flex; /* Flex layout for horizontal alignment */
+      justify-content: right; /* Center list items */
+      align-items: center; /* Vertically align items */
+      //position: static; /* Reset position */
+      right: 0;
+      margin: 0; /* Remove margin */
+      height: 100%;
+      padding: 0; /* Remove padding */
+      list-style: none; /* Remove list styles */
+      width: 20%; /* Span the width of the nav-bar */
+      bottom: 0;
+    }
+
+    li {
+      margin: 0 10px; /* Add spacing between list items */
     }
   }
+
+  .hamburger-icon, .close-icon {
+    display: none; /* Hide hamburger menu icons for this layout */
+  }
+}
