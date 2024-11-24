@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import AnimatedLetters from '../../../AnimatedLetters'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { coldarkDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import Loader from 'react-loaders'
 
 
 const IntegrationTestsContainersBlog = () => {
@@ -383,6 +384,7 @@ public static class ServiceCollectionExtensions
 
         </div>
       </div>
+      <Loader type="pacman" active/>
     </>
   )
 }
