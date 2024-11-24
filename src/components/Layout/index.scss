@@ -234,12 +234,14 @@
   @media screen and (max-width: 1200px) {
     .page {
       top: 50px;
+      overflow: auto;
     }
   
     .container {
       position: initial;
       height: auto;
       min-height: auto;
+      overflow: auto;
   
       &.contact-page,
       &.about-page,
@@ -254,6 +256,8 @@
           display: block;
           padding: 20px;
           box-sizing: border-box;
+          overflow: auto;
+          margin-bottom: 15px;
         }
       }
   
