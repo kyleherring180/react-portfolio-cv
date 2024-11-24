@@ -1,0 +1,22 @@
+
+@media screen and (max-width: 1200px) {
+  .tags,
+  .home-page h1:before,
+  .home-page h1:after {
+    display: none;
+  }
+  
+  .container {
+    height: 100%;
+    min-height: unset;
+  }
+
+  .individual-blog-page .text-zone {
+    position: initial;
+    width: 100%;
+    height: 100%;
+    transform: none;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+}
