@@ -13,6 +13,13 @@
   padding: 20px;
   box-sizing: border-box;
   overflow: auto;
+
+  // .nav-bar is an 80px-wide, absolutely-positioned sidebar at these widths (see
+  // Sidebar/index.scss) - the narrow-screen override below 1200px doesn't need this because
+  // .nav-bar becomes a horizontal top bar instead at that breakpoint.
+  @media screen and (min-width: 1201px) {
+    padding-left: 110px;
+  }
 }
 
 .blog-grid {
