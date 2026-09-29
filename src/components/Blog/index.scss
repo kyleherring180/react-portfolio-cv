@@ -6,6 +6,13 @@
   margin-top: 20px;
 
   > div {
-    flex: 0 0 auto;
+    display: flex;
+    flex: 0 0 345px;
+
+    a {
+      display: block;
+      width: 100%;
+      text-decoration: none;
+    }
   }
 }
