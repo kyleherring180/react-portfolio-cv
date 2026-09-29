@@ -44,9 +44,29 @@ const Blog = () => {
                                     />
                                     <CardContent>
                                         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                                            Discover how to streamline your integration testing process in .NET applications using Testcontainers with Microsoft SQL Server. 
-                                            This post explores how to set up isolated, lightweight containers for database integration tests, 
+                                            Discover how to streamline your integration testing process in .NET applications using Testcontainers with Microsoft SQL Server.
+                                            This post explores how to set up isolated, lightweight containers for database integration tests,
                                             ensuring consistency and reliability across different environments.
+                                        </Typography>
+                                    </CardContent>
+                                </Card>
+                            </Link>
+                        </div>
+                        <div>
+                            <Link to="/react-portfolio-cv/ai-bug-fixing-pipeline-blog">
+                                <Card sx={{backgroundColor: '#0a5775',maxWidth: 345 }}>
+                                    <CardHeader
+                                        sx={{color: '#fff'}}
+                                        title="Building an Autonomous AI Bug-Fixing Pipeline"
+                                        subheader="September 30, 2026"
+                                        subheaderTypographyProps={{ style: { color: '#fff' } }}
+                                    />
+                                    <CardContent>
+                                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                                            How I built a multi-agent pipeline that turns a plain-English bug report into a
+                                            reviewable pull request - covering the agent architecture, Agent2Agent (A2A)
+                                            protocol, the Microsoft Agent Framework hosting Claude, the Kubernetes setup
+                                            underneath it, and the design decisions (and mistakes) along the way.
                                         </Typography>
                                     </CardContent>
                                 </Card>

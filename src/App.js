@@ -7,6 +7,7 @@ import Contact from './components/Contact';
 import Blog from "./components/Blog";
 import React from "react";
 import IntegrationTestsContainersBlog from './components/Blog/Posts/IntegrationTestsContrainers'
+import AiBugFixingPipelineBlog from './components/Blog/Posts/AiBugFixingPipeline'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path='/react-portfolio-cv/contact' element={<Contact />} />
             <Route path='/react-portfolio-cv/blog' element={<Blog />} />
             <Route path='/react-portfolio-cv/integration-test-blog' element={<IntegrationTestsContainersBlog />} />
+            <Route path='/react-portfolio-cv/ai-bug-fixing-pipeline-blog' element={<AiBugFixingPipelineBlog />} />
         </Route>
       </Routes>
     </>
