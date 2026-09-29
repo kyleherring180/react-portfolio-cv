@@ -7,31 +7,31 @@ import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 const Sidebar = () => (
     <div className='nav-bar'>
-        <Link className='logo' to='/react-portfolio-cv'>
+        <Link className='logo' to='/'>
             <img src={LogoS} alt="logo" />
         </Link>
         <nav>
             <NavLink
-                to="/react-portfolio-cv"
+                to="/"
                 end
                 className={({ isActive }) => (isActive ? 'active home-link' : 'home-link')}
             >
                 <FontAwesomeIcon icon={faHome} color="#4d4d4e" />
             </NavLink>
             <NavLink
-                to="/react-portfolio-cv/about"
+                to="/about"
                 className={({ isActive }) => (isActive ? 'active about-link' : 'about-link')}
             >
                 <FontAwesomeIcon icon={faUser} color="#4d4d4e" />
             </NavLink>
             <NavLink
-                to="/react-portfolio-cv/blog"
+                to="/blog"
                 className={({ isActive }) => (isActive ? 'active blog-link' : 'blog-link')}
             >
                 <FontAwesomeIcon icon={faPen} color="#4d4d4e" />
             </NavLink>
             <NavLink
-                to="/react-portfolio-cv/contact"
+                to="/contact"
                 className={({ isActive }) => (isActive ? 'active contact-link' : 'contact-link')}
             >
                 <FontAwesomeIcon icon={faEnvelope} color="#4d4d4e" />

@@ -29,7 +29,7 @@ const Blog = () => {
                     </h1>
                     <div className="blog-grid">
                         <div>
-                            <Link to="/react-portfolio-cv/integration-test-blog">
+                            <Link to="/integration-test-blog">
                                 <Card sx={{backgroundColor: '#0a5775', width: 345, height: 480, display: 'flex', flexDirection: 'column'}}>
                                     <CardHeader
                                         sx={{color: '#fff'}}
@@ -54,7 +54,7 @@ const Blog = () => {
                             </Link>
                         </div>
                         <div>
-                            <Link to="/react-portfolio-cv/ai-bug-fixing-pipeline-blog">
+                            <Link to="/ai-bug-fixing-pipeline-blog">
                                 <Card sx={{backgroundColor: '#0a5775', width: 345, height: 480, display: 'flex', flexDirection: 'column'}}>
                                     <CardHeader
                                         sx={{color: '#fff'}}
