@@ -60,10 +60,10 @@ const Home = () => {
           </h1>
           <h2>Fullstack Developer / .Net Expert </h2>
           <div className="button-container">
-            <Link to="/react-portfolio-cv/contact" className="flat-button">
+            <Link to="/contact" className="flat-button">
               CONTACT ME
             </Link>
-            <Link to="/react-portfolio-cv/blog" className="flat-button">
+            <Link to="/blog" className="flat-button">
               BLOG
             </Link>
           </div>

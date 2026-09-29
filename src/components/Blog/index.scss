@@ -1,1 +1,44 @@
 
+// The shared Layout only makes .text-zone full-width below 1200px (Layout/index.scss's
+// max-width media query) - above that it falls back to the generic .text-zone rule (35%
+// width, absolute positioned), far too narrow to lay out a grid of cards. The blog listing
+// page genuinely wants full width at every viewport size, unlike the pages this narrow
+// column was designed for.
+.container.blog-page .text-zone {
+  position: initial;
+  transform: none;
+  width: 100%;
+  height: 100%;
+  display: block;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: auto;
+
+  // Every other page positions its .text-zone at `left: 10%` (the generic .text-zone rule in
+  // Layout/index.scss) - that's also what the decorative <body>/<h1>/</html> tag markers
+  // (.tags/.top-tags) are aligned against. Match that same 10% offset here instead of a fixed
+  // pixel value, so the Blog h1 lines up with everything else instead of just clearing the
+  // .nav-bar sidebar by an arbitrary amount. The narrow-screen override below 1200px doesn't
+  // need this because .nav-bar becomes a horizontal top bar instead at that breakpoint.
+  @media screen and (min-width: 1201px) {
+    padding-left: 10%;
+  }
+}
+
+.blog-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 20px;
+
+  > div {
+    display: flex;
+    flex: 0 0 345px;
+
+    a {
+      display: block;
+      width: 100%;
+      text-decoration: none;
+    }
+  }
+}
