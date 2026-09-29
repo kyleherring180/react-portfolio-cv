@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Loader from 'react-loaders';
 import AnimatedLetters from '../AnimatedLetters';
 import Blog1Img from '../../assets/images/integration_tests_blog.png';
-import Blog2Img from '../../assets/images/ai_bug_fixing_pipeline_blog.svg';
+import Blog2Img from '../../assets/images/ai_bug_fixing_pipeline_blog.png';
 import './index.scss';
 import {Card, CardContent, CardHeader, CardMedia, Typography} from "@mui/material";
 import { Link } from 'react-router-dom'
