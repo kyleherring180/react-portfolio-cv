@@ -1,4 +1,20 @@
 
+// The shared Layout only makes .text-zone full-width below 1200px (Layout/index.scss's
+// max-width media query) - above that it falls back to the generic .text-zone rule (35%
+// width, absolute positioned), far too narrow to lay out a grid of cards. The blog listing
+// page genuinely wants full width at every viewport size, unlike the pages this narrow
+// column was designed for.
+.container.blog-page .text-zone {
+  position: initial;
+  transform: none;
+  width: 100%;
+  height: 100%;
+  display: block;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
 .blog-grid {
   display: flex;
   flex-wrap: wrap;
