@@ -14,11 +14,14 @@
   box-sizing: border-box;
   overflow: auto;
 
-  // .nav-bar is an 80px-wide, absolutely-positioned sidebar at these widths (see
-  // Sidebar/index.scss) - the narrow-screen override below 1200px doesn't need this because
-  // .nav-bar becomes a horizontal top bar instead at that breakpoint.
+  // Every other page positions its .text-zone at `left: 10%` (the generic .text-zone rule in
+  // Layout/index.scss) - that's also what the decorative <body>/<h1>/</html> tag markers
+  // (.tags/.top-tags) are aligned against. Match that same 10% offset here instead of a fixed
+  // pixel value, so the Blog h1 lines up with everything else instead of just clearing the
+  // .nav-bar sidebar by an arbitrary amount. The narrow-screen override below 1200px doesn't
+  // need this because .nav-bar becomes a horizontal top bar instead at that breakpoint.
   @media screen and (min-width: 1201px) {
-    padding-left: 110px;
+    padding-left: 10%;
   }
 }
 
