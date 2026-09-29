@@ -1,0 +1,60 @@
+<svg width="345" height="194" viewBox="0 0 345 194" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a5775" />
+      <stop offset="100%" stop-color="#123e52" />
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8fd6ff" />
+    </marker>
+  </defs>
+
+  <rect width="345" height="194" fill="url(#bg)" />
+
+  <text x="172.5" y="28" text-anchor="middle" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700">
+    Bug-Fixing Pipeline
+  </text>
+
+  <!-- pipeline nodes -->
+  <g font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#ffffff">
+    <!-- Bug -->
+    <circle cx="35" cy="100" r="16" fill="#ffffff" opacity="0.12" stroke="#8fd6ff" stroke-width="1.5" />
+    <text x="35" y="104" text-anchor="middle" font-size="14">🐞</text>
+    <text x="35" y="138" text-anchor="middle">Bug</text>
+    <text x="35" y="150" text-anchor="middle">Report</text>
+
+    <line x1="53" y1="100" x2="90" y2="100" stroke="#8fd6ff" stroke-width="1.5" marker-end="url(#arrow)" />
+
+    <!-- Root Cause -->
+    <circle cx="108" cy="100" r="16" fill="#ffffff" opacity="0.12" stroke="#8fd6ff" stroke-width="1.5" />
+    <text x="108" y="104" text-anchor="middle" font-size="12">🔍</text>
+    <text x="108" y="138" text-anchor="middle">Root</text>
+    <text x="108" y="150" text-anchor="middle">Cause</text>
+
+    <line x1="126" y1="100" x2="163" y2="100" stroke="#8fd6ff" stroke-width="1.5" marker-end="url(#arrow)" />
+
+    <!-- Fix -->
+    <circle cx="181" cy="100" r="16" fill="#ffffff" opacity="0.12" stroke="#8fd6ff" stroke-width="1.5" />
+    <text x="181" y="104" text-anchor="middle" font-size="12">🛠</text>
+    <text x="181" y="138" text-anchor="middle">Fix</text>
+
+    <line x1="199" y1="100" x2="236" y2="100" stroke="#8fd6ff" stroke-width="1.5" marker-end="url(#arrow)" />
+
+    <!-- Verify -->
+    <circle cx="254" cy="100" r="16" fill="#ffffff" opacity="0.12" stroke="#8fd6ff" stroke-width="1.5" />
+    <text x="254" y="104" text-anchor="middle" font-size="12">✅</text>
+    <text x="254" y="138" text-anchor="middle">Verify</text>
+
+    <line x1="272" y1="100" x2="292" y2="100" stroke="#8fd6ff" stroke-width="1.5" marker-end="url(#arrow)" />
+
+    <!-- PR -->
+    <circle cx="310" cy="100" r="16" fill="#ffffff" opacity="0.12" stroke="#8fd6ff" stroke-width="1.5" />
+    <text x="310" y="104" text-anchor="middle" font-size="12">🔀</text>
+    <text x="310" y="138" text-anchor="middle">Pull</text>
+    <text x="310" y="150" text-anchor="middle">Request</text>
+  </g>
+
+  <text x="172.5" y="176" text-anchor="middle" fill="#8fd6ff" font-family="Arial, Helvetica, sans-serif" font-size="10" font-style="italic">
+    autonomous multi-agent pipeline
+  </text>
+</svg>
