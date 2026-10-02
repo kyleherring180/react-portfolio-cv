@@ -12,6 +12,12 @@ import AnimatedLetters from '../AnimatedLetters'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './index.scss'
 
+const techList = [
+  '.NET', 'C#', 'SQL', 'GitHub', 'Azure', 'React', 'JavaScript', 'HTML', 'CSS', 'RabbitMQ', 'Octopus',
+  'GitHub Actions', 'TeamCity', 'TDD', 'DDD', 'Jira', 'Scrum', 'Microservice Architecture', 'API development',
+  'Bitbucket', 'SSMS',
+]
+
 const About = () => {
   const [letterClass, setLetterClass] = useState('text-animate')
 
@@ -33,20 +39,22 @@ const About = () => {
             />
           </h1>
           <p>
-            I'm a very ambitious software engineer currently based in The Netherlands.I enjoy working with the latest
+            I'm a very ambitious software engineer currently based in the Netherlands. I enjoy working with the latest
             technologies and solving challenging problems to solve business needs.
           </p>
-          <p align="LEFT">
+          <p>
             I'm quietly confident (but not afraid to speak my mind), naturally curious, and continually looking to improve processes.
           </p>
           <p>
-            If I had to define myself in one sentence, I would say I am a 
+            If I had to define myself in one sentence, I would say I am a
             goal-oriented team player, a sports fanatic, and an outdoor enthusiast.
           </p>
-          <p>Next is a list of technologies/methodologies I currently work with:</p>
-          <p>.Net • C# • SQL • Github • Azure • React • JavaScript • HTML • CSS • RabbitMQ • Octopus • Github Actions 
-            • TeamCity • TDD • DDD • Jira • Scrum • Microservice Architecture • API development • BitBucket • SSMS 
-          </p>
+          <p>Technologies and practices I work with:</p>
+          <ul className="tech-list">
+            {techList.map((tech) => (
+              <li key={tech}>{tech}</li>
+            ))}
+          </ul>
         </div>
 
         <div className="stage-cube-cont">
