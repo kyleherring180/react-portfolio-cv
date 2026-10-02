@@ -1,0 +1,36 @@
+{
+  "site": {
+    "title": "Kyle Herring – Software Engineer",
+    "description": "Kyle Herring, software engineer in the Netherlands. Portfolio and blog on .NET, testing, and AI agents.",
+    "image": "og/site.png"
+  },
+  "pages": [
+    {
+      "path": "/about",
+      "title": "About"
+    },
+    {
+      "path": "/contact",
+      "title": "Contact"
+    },
+    {
+      "path": "/blog",
+      "title": "Blog",
+      "description": "Posts on .NET, integration testing, Kubernetes, and building AI agents."
+    },
+    {
+      "path": "/ai-bug-fixing-pipeline-blog",
+      "type": "article",
+      "title": "Building an Autonomous AI Bug-Fixing Pipeline",
+      "description": "How I built a multi-agent pipeline that turns a plain-English bug report into a reviewable pull request: the architecture, A2A, Microsoft's Agent Framework hosting Claude, and the Kubernetes setup underneath.",
+      "image": "og/ai-bug-fixing-pipeline.jpg"
+    },
+    {
+      "path": "/integration-test-blog",
+      "type": "article",
+      "title": "Integration Tests using Testcontainers for .NET and Microsoft SQL Server",
+      "description": "Run your .NET integration tests against a real SQL Server in Docker with Testcontainers, with a clean database for every test.",
+      "image": "og/integration-tests.jpg"
+    }
+  ]
+}
