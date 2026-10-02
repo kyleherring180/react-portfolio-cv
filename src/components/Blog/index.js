@@ -29,33 +29,8 @@ const Blog = () => {
                     </h1>
                     <div className="blog-grid">
                         <div>
-                            <Link to="/integration-test-blog">
-                                <Card sx={{backgroundColor: '#0a5775', width: 345, height: 480, display: 'flex', flexDirection: 'column'}}>
-                                    <CardHeader
-                                        sx={{color: '#fff'}}
-                                        title="Integration Tests using Test Containers for .Net using Microsoft SQL Server"
-                                        subheader="November 16, 2024"
-                                        subheaderTypographyProps={{ style: { color: '#fff' } }}
-                                    />
-                                    <CardMedia
-                                        component="img"
-                                        height="194"
-                                        image={Blog1Img}
-                                        alt="Integration Tests"
-                                    />
-                                    <CardContent sx={{ flexGrow: 1, overflow: 'auto' }}>
-                                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                                            Discover how to streamline your integration testing process in .NET applications using Testcontainers with Microsoft SQL Server.
-                                            This post explores how to set up isolated, lightweight containers for database integration tests,
-                                            ensuring consistency and reliability across different environments.
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
-                            </Link>
-                        </div>
-                        <div>
                             <Link to="/ai-bug-fixing-pipeline-blog">
-                                <Card sx={{backgroundColor: '#0a5775', width: 345, height: 480, display: 'flex', flexDirection: 'column'}}>
+                                <Card sx={{backgroundColor: '#0a5775', width: 345, height: '100%', display: 'flex', flexDirection: 'column'}}>
                                     <CardHeader
                                         sx={{color: '#fff'}}
                                         title="Building an Autonomous AI Bug-Fixing Pipeline"
@@ -68,12 +43,37 @@ const Blog = () => {
                                         image={Blog2Img}
                                         alt="AI Bug-Fixing Pipeline"
                                     />
-                                    <CardContent sx={{ flexGrow: 1, overflow: 'auto' }}>
-                                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                                    <CardContent sx={{ flexGrow: 1 }}>
+                                        <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.8)', lineHeight: 1.6 }}>
                                             How I built a multi-agent pipeline that turns a plain-English bug report into a
-                                            reviewable pull request - covering the agent architecture, Agent2Agent (A2A)
+                                            reviewable pull request, covering the agent architecture, Agent2Agent (A2A)
                                             protocol, the Microsoft Agent Framework hosting Claude, the Kubernetes setup
                                             underneath it, and the design decisions (and mistakes) along the way.
+                                        </Typography>
+                                    </CardContent>
+                                </Card>
+                            </Link>
+                        </div>
+                        <div>
+                            <Link to="/integration-test-blog">
+                                <Card sx={{backgroundColor: '#0a5775', width: 345, height: '100%', display: 'flex', flexDirection: 'column'}}>
+                                    <CardHeader
+                                        sx={{color: '#fff'}}
+                                        title="Integration Tests using Testcontainers for .NET and Microsoft SQL Server"
+                                        subheader="November 16, 2024"
+                                        subheaderTypographyProps={{ style: { color: '#fff' } }}
+                                    />
+                                    <CardMedia
+                                        component="img"
+                                        height="194"
+                                        image={Blog1Img}
+                                        alt="Integration Tests"
+                                    />
+                                    <CardContent sx={{ flexGrow: 1 }}>
+                                        <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.8)', lineHeight: 1.6 }}>
+                                            Discover how to streamline your integration testing process in .NET applications using Testcontainers with Microsoft SQL Server.
+                                            This post explores how to set up isolated, lightweight containers for database integration tests,
+                                            ensuring consistency and reliability across different environments.
                                         </Typography>
                                     </CardContent>
                                 </Card>
