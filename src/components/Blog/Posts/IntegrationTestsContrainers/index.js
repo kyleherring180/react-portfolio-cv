@@ -13,7 +13,7 @@ const IntegrationTestsContainersBlog = () => {
       return setLetterClass('text-animate-hover')
     }, 3000)
   }, [])
-  
+
   return(
     <>
       <div className="container individual-blog-page">
@@ -28,13 +28,11 @@ const IntegrationTestsContainersBlog = () => {
                 ' ',
                 'using',
                 ' ',
-                'Test',
-                ' ',
-                'Containers',
+                'Testcontainers',
                 ' ',
                 'for',
                 ' ',
-                '.Net',
+                '.NET',
                 ' ',
                 'and',
                 ' ',
@@ -51,163 +49,177 @@ const IntegrationTestsContainersBlog = () => {
           </h1>
           <p>
             When it comes to testing in software development, opinions often vary on the value and types of tests that
-            should be prioritized. While most developers agree that unit tests are foundational for any codebase,
-            integration tests are equally important—and often underappreciated.
+            should be prioritized. Most developers agree that unit tests are foundational for any codebase. Integration
+            tests are equally important, and often underappreciated.
+          </p>
+
+          <h2>Why integration tests matter</h2>
+
+          <p>
+            Unit tests verify individual components in isolation. Integration tests validate that different parts of
+            your system work together as expected. They catch issues that unit tests might miss, giving you confidence
+            that your changes haven't introduced regressions or deviations in functionality.
           </p>
 
           <p>
-            In this post, I’ll focus on the role of integration tests and how they help ensure your application’s
-            reliability. Unlike unit tests, which verify individual components in isolation, integration tests validate
-            that different parts of your system work together as expected. They catch issues that unit tests might miss,
-            giving you confidence that your changes haven’t introduced regressions or deviations in functionality. When
-            my integration tests pass after code changes, I can deploy to production with peace of mind, knowing my
-            application should continue to perform as intended.
+            When my integration tests pass after code changes, I can deploy to production with peace of mind, knowing
+            my application should continue to perform as intended.
           </p>
 
           <p>
-            Integration tests can be more challenging to implement because they often involve managing multiple
-            dependencies, making setup and maintenance more complex. Despite this, I firmly believe that well-designed
-            integration tests provide significantly more value than unit tests. By validating how components interact,
-            integration tests often cover the functionality of individual units as well. This means that with a robust
-            suite of integration tests, you may reduce your reliance on unit tests, streamlining your testing strategy
-            while maintaining confidence in your system’s behavior.
+            Integration tests can be more challenging to implement. They often involve managing multiple dependencies,
+            which makes setup and maintenance more complex. Despite this, I firmly believe that well-designed
+            integration tests provide significantly more value than unit tests.
           </p>
 
           <p>
-            Of course, some dependencies may need to be mocked in integration tests, but it’s essential to minimize this
-            as much as possible. The more we mock, the further our tests drift from a real system, reducing their
-            effectiveness. One of the most challenging dependencies to include in integration tests is the database.
-            Many developers mock the data access layer to avoid the complexity, but this often leaves a critical part of
-            the system untested. In the rest of this post, I’ll share some relatively painless strategies to incorporate
-            a real database into your integration tests, ensuring they are both robust and reflective of your production
-            environment.
+            By validating how components interact, integration tests often cover the functionality of individual units
+            as well. With a robust suite of integration tests, you may reduce your reliance on unit tests, streamlining
+            your testing strategy while keeping confidence in your system's behavior.
+          </p>
+
+          <h2>The database problem</h2>
+
+          <p>
+            Some dependencies may need to be mocked in integration tests, but it's essential to keep this to a minimum.
+            The more we mock, the further our tests drift from the real system, and the less effective they become.
           </p>
 
           <p>
-            In some of my recent projects, we primarily used in-memory databases for our integration tests. While they
-            are quick and painless to implement, they come with significant tradeoffs. For one, in-memory databases
-            don’t accurately represent the behavior of the actual database used in production, leading to potential
+            One of the most challenging dependencies to include is the database. Many developers mock the data access
+            layer to avoid the complexity, but this often leaves a critical part of the system untested. In the rest of
+            this post, I'll share some relatively painless strategies for using a real database in your integration
+            tests, so they're both robust and reflective of your production environment.
+          </p>
+
+          <p>
+            In some of my recent projects, we mainly used in-memory databases for our integration tests. They're quick
+            and painless to set up, but they come with significant tradeoffs. In particular, an in-memory database
+            doesn't accurately represent the behavior of the real database used in production, which can lead to
             differences in query execution or data handling.
           </p>
 
           <p>
-            This tradeoff became particularly evident when we wanted to start using the ComplexProperty feature
-            introduced in EF Core 8. Unfortunately, the EF Core team has not made this feature compatible with in-memory
-            databases, and support for in-memory databases is gradually being phased out in newer EF Core versions. Long
-            term, in-memory databases were no longer a viable option for our integration tests. Moreover, we didn’t want
-            to forgo using ComplexProperty just to make our integration tests work. This left us with a challenge: how
-            could we effectively use a SQL Server database (our production database) in our integration tests?
+            This became particularly clear when we wanted to start using the <code className="code-highlight">ComplexProperty</code>{' '}
+            feature introduced in EF Core 8. The EF Core team hasn't made this feature compatible with in-memory
+            databases, and in-memory support is gradually being phased out in newer EF Core versions. Long term,
+            in-memory databases were no longer a viable option for our integration tests.
           </p>
 
-          <h2>The Challenges with LocalDB</h2>
+          <p>
+            We also didn't want to give up <code className="code-highlight">ComplexProperty</code> just to make our tests
+            work. That left us with a challenge: how could we effectively use SQL Server (our production database) in
+            our integration tests?
+          </p>
+
+          <h2>The challenges with LocalDB</h2>
 
           <p>
-            I’ve seen developers use localdb for integration tests. While this works for simple setups, it introduces a
+            I've seen developers use LocalDB for integration tests. While this works for simple setups, it introduces a
             host of issues:
           </p>
 
           <ul>
             <li>
-              <strong>Test Environment Parity:</strong> If tests are run across multiple environments (e.g., CI
-              pipelines, staging, production), maintaining parity becomes cumbersome.
+              <strong>Test environment parity:</strong> if tests run across multiple environments (e.g., CI
+              pipelines, staging, production), keeping them in sync becomes cumbersome.
             </li>
             <li>
-              <strong>Clean Test State:</strong> Ideally, each test should run against a clean database to avoid data
-              leakage from other tests. A shared localdb could lead to flaky tests influenced by leftover data.
+              <strong>Clean test state:</strong> ideally, each test runs against a clean database to avoid data
+              leaking between tests. A shared LocalDB can lead to flaky tests influenced by leftover data.
             </li>
             <li>
-              <strong>Manual Interference:</strong> Data added to the localdb manually (outside of tests) could
-              unintentionally impact test results.
+              <strong>Manual interference:</strong> data added to LocalDB manually (outside of tests) can
+              unintentionally affect test results.
             </li>
           </ul>
 
           <p>
-            One solution to maintain a clean test state is to run each test in a transaction and roll it back after
-            completion. However, this doesn’t solve the problem of external data contamination in the localdb.
-            Alternatively, you could use the <code className="code-highlight">IAsyncLifetime</code> interface from xUnit
-            to run a delete script and
-            clear the database before each test. While functional, this approach feels clunky and error-prone.
+            One way to keep a clean test state is to run each test in a transaction and roll it back afterwards.
+            However, that doesn't solve the problem of external data contaminating LocalDB.
+          </p>
+
+          <p>
+            Alternatively, you could use xUnit's <code className="code-highlight">IAsyncLifetime</code> interface to run
+            a delete script and clear the database before each test. It works, but it feels clunky and error-prone.
           </p>
 
           <h2>Introducing Testcontainers</h2>
 
           <p>
-            Enter Testcontainers, a testing library that provides lightweight and easy-to-use APIs for spinning up real
-            services in Docker containers. With Testcontainers, you can:
+            Enter <a href="https://testcontainers.com/" target="_blank" rel="noreferrer">Testcontainers</a>, a testing
+            library with lightweight, easy-to-use APIs for spinning up real services in Docker containers. With
+            Testcontainers, you can:
           </p>
 
           <ul>
             <li>
-              <strong>Bootstrap a SQL Server database in a Docker container:</strong> This ensures that your tests are
-              run against the same database type used in production.
+              <strong>Bootstrap a SQL Server database in a Docker container,</strong> so your tests run against the
+              same database type used in production.
             </li>
             <li>
-              <strong>Guarantee a clean slate:</strong> Each test run starts with a fresh database state, eliminating
+              <strong>Guarantee a clean slate:</strong> each test run starts with a fresh database, with no
               interference from other tests or environments.
             </li>
             <li>
-              <strong>Ensure parity:</strong> Testcontainers makes it simple to replicate your production database setup
-              across local and CI environments.
+              <strong>Ensure parity:</strong> the same database setup runs locally and in CI.
             </li>
           </ul>
 
-          <p>
-            For more details about Testcontainers, visit <a href="https://testcontainers.com/" target="_blank"
-                                                            rel="noreferrer">Testcontainers</a>.
-          </p>
-
-          <h2>Example: Customer Microservice</h2>
+          <h2>Example: a customer microservice</h2>
 
           <p>
-            To demonstrate the value of Testcontainers, I created a demo <strong>Customer Microservice</strong>. This
-            service consumes a customer message from a message broker (e.g., RabbitMQ) and saves it to a SQL Server
-            database. The integration tests:
+            To demonstrate, I created a demo <strong>customer microservice</strong>. It consumes a customer message
+            from a message broker (e.g., RabbitMQ) and saves it to a SQL Server database. The integration tests:
           </p>
 
           <ul>
-            <li>Load expected data from a JSON file.</li>
-            <li>Compare the expected data to what was saved in the database during the test.</li>
+            <li>load expected data from a JSON file,</li>
+            <li>then compare it to what was saved in the database during the test.</li>
           </ul>
 
           <p>
-            By using Testcontainers, the tests are able to spin up a clean SQL Server instance for each run, ensuring
-            consistent and reliable results.
+            Because the tests use Testcontainers, every run gets a clean SQL Server instance, which keeps the results
+            consistent and reliable.
           </p>
 
           <p>
-            You can find the full example, including the code for setting up Testcontainers and running the tests, on
+            You can find the full example, including the Testcontainers setup and the tests themselves, in
             my <a href="https://github.com/kyleherring180/ContainerIntegrationTestsDemo" target="_blank"
                   rel="noreferrer">GitHub repository</a>.
           </p>
 
           <p>
-            For this demo, I will assume you are already familiar with setting up the consumer part of the solution and
-            adding the data access layer. This post will focus specifically on the integration tests project library and
-            how to configure the MsSqlTest container for the tests.
+            I'll assume you're already familiar with setting up the consumer and the data access layer. This post
+            focuses on the integration tests project and how to configure the SQL Server test container.
+          </p>
+
+          <h3>Step 1: add the package</h3>
+
+          <p>
+            Add the Testcontainers NuGet package to the integration tests project, either through your IDE or with
+            this command:
+          </p>
+
+          <SyntaxHighlighter language="bash" style={coldarkDark}>
+            {`dotnet add package Testcontainers.MsSql`}
+          </SyntaxHighlighter>
+
+          <h3>Step 2: share one container across tests</h3>
+
+          <p>
+            I chose to create a single container that's reused across all tests. To keep tests isolated and avoid data
+            conflicts, I configured each test to create its own database inside that container.
           </p>
 
           <p>
-            The first step is to add the Testcontainers NuGet package to the integration tests project
-            library.
-            This can be done using the UI or by running the following command:
-          </p>
-
-          <code className="code-highlight">dotnet add package Testcontainers.MsSql</code>
-
-          <p>
-            In my setup, I chose to create a single container that would be reused across all tests. However, to ensure
-            test
-            isolation and avoid data conflicts between tests, I configured the container to create a new database for
-            each
-            test. This required initializing the container before the tests began running. To manage this setup, I used
-            the{' '}
-            <code className="code-highlight">IClassFixture&lt;&gt;</code> interface from xUnit. Here’s the fixture
-            implementation:
+            That means the container has to be started before any tests run. To manage this, I used xUnit's{' '}
+            <code className="code-highlight">IClassFixture&lt;&gt;</code> interface. Here's the fixture:
           </p>
 
           <SyntaxHighlighter language="csharp" style={coldarkDark}>
             {`using Testcontainers.MsSql;
-      
+
 namespace ContainerIntegrationTestsDemo.IntegrationTests.Helpers;
 
 public class MsSqlContainerFixture : IAsyncLifetime
@@ -228,12 +240,13 @@ public class MsSqlContainerFixture : IAsyncLifetime
           </SyntaxHighlighter>
 
           <p>
-            The <code className="code-highlight">MsSqlContainerFixture</code> initializes a new container before any
-            tests begin execution and ensures
-            the container is fully started before the tests run. Once all tests have finished, the fixture shuts
-            down the container. Next, we will add the fixture to our test class and implement the <code
-            className="code-highlight">IAsyncLifetime</code>
-            interface.
+            <code className="code-highlight">MsSqlContainerFixture</code> starts a new container and waits until it's
+            fully up before any tests run. Once all tests have finished, it shuts the container down.
+          </p>
+
+          <p>
+            Next, add the fixture to the test class and implement the{' '}
+            <code className="code-highlight">IAsyncLifetime</code> interface:
           </p>
 
           <SyntaxHighlighter language="csharp" style={coldarkDark}>
@@ -253,24 +266,29 @@ public class IntegrationTest1 : IClassFixture<MsSqlContainerFixture>, IAsyncLife
     }`}
 
           </SyntaxHighlighter>
+
+          <h3>Step 3: a fresh database per test</h3>
+
           <p>
-            Before execution, each test will call the <code className="code-highlight">InitializeAsync</code>
-            method, where all necessary setup for the test should be performed. In my case, I needed to create
-            a new database for each test to ensure a clean slate and avoid interference from external data
-            manipulation. To achieve this, I used the <code className="code-highlight">Guid.NewGuid()</code>
-            method to generate unique database names.
-
-            The <code className="code-highlight">MsSqlContainer</code> class provides a
-            <code className="code-highlight">GetConnectionString()</code> method, which by default connects to the
-            master database. To use a different database, we need to specify the desired database name. While
-            there are various ways to construct a connection string, I opted to use the reliable
-            <code className="code-highlight">SqlConnectionStringBuilder</code> class.
-
-            Finally, I added an extension method to integrate the
-            <code className="code-highlight">MsSqlContainer</code> with the
-            <code className="code-highlight">ServiceCollection</code>,
-            allowing it to accept the new connection string as a parameter.
+            Before each test runs, xUnit calls <code className="code-highlight">InitializeAsync</code>. That's where all
+            the setup for the test goes. In my case, each test creates a new database, so it starts with a clean slate
+            and nothing outside the test can interfere. I used <code className="code-highlight">Guid.NewGuid()</code>{' '}
+            to generate a unique database name.
           </p>
+
+          <p>
+            <code className="code-highlight">MsSqlContainer</code> provides a{' '}
+            <code className="code-highlight">GetConnectionString()</code> method, which connects to the{' '}
+            <code className="code-highlight">master</code> database by default. To use a different database, you need
+            to set the database name. There are various ways to build a connection string; I opted for the reliable{' '}
+            <code className="code-highlight">SqlConnectionStringBuilder</code> class.
+          </p>
+
+          <p>
+            Finally, I added an extension method that registers the database with the{' '}
+            <code className="code-highlight">ServiceCollection</code>, taking the new connection string as a parameter.
+          </p>
+
           <SyntaxHighlighter language="csharp" style={coldarkDark}>
             {`public async Task InitializeAsync()
     {
@@ -296,11 +314,12 @@ public class IntegrationTest1 : IClassFixture<MsSqlContainerFixture>, IAsyncLife
     }
             `}
           </SyntaxHighlighter>
+
           <p>
-            And the <code className="code-highlight">AddMsSqlTestContainer</code> Extension method follows below.
-            I also created a separate <code className="code-highlight">TestDataRepository</code> specifically
-            for my tests.
+            Here's the <code className="code-highlight">AddMsSqlTestContainer</code> extension method. I also created a
+            separate <code className="code-highlight">TestDataRepository</code> specifically for my tests.
           </p>
+
           <SyntaxHighlighter language="csharp" style={coldarkDark}>
             {`
 namespace ContainerIntegrationTestsDemo.IntegrationTests.Helpers;
@@ -316,32 +335,40 @@ public static class ServiceCollectionExtensions
 }
             `}
           </SyntaxHighlighter>
+
           <p>
-            After building up my <code className="code-highlight">ServiceProvider</code>, the database for
-            that particular test should be created. I then apply the migrations to the database. Now we have
-            a clean working Microsoft SQL Server database that the test can query against.
+            Once the <code className="code-highlight">ServiceProvider</code> is built, the test's database gets
+            created and the migrations are applied. Now we have a clean, working SQL Server database for the test to
+            query against.
           </p>
+
+          <h3>Step 4: the test itself</h3>
+
           <p>
-            For my example test I provide an input xml file and an expected output JSON file. I consume
-            the xml file and my application runs as if it were running on production. Saving the new
-            customer to the database. The test then queries the database for this new customer and deserializes
-            the expected JSON into the Customer class. Finally, I use FluentAssertions to compare the two objects.
+            My example test takes an input XML file and an expected output JSON file. The application consumes the XML
+            file exactly as it would in production and saves the new customer to the database.
+          </p>
+
+          <p>
+            The test then queries the database for the new customer, deserializes the expected JSON into the{' '}
+            <code className="code-highlight">Customer</code> class, and uses FluentAssertions to compare the two
+            objects.
           </p>
 
           <h2>Performance concerns and resolutions</h2>
-          
-          <p>
-            After implementing the above method for a recent project, I encountered performance issues when 
-            spinning up multiple databases per test. Creating a new database for each test required significant 
-            processing overhead. To address this, I decided to pivot and clear the database before every test 
-            instead of creating a new one each time.
 
-            Using a SQL script to delete all the data from every table felt clunky and error-prone. I wanted a 
-            more programmatic approach that would automatically account for new entities without requiring 
-            manual updates to the tests. Below is the solution I arrived at, leveraging EF Core's built-in 
-            methods and some reflection.
+          <p>
+            After using this approach on a recent project, I ran into performance issues. Creating a new database for
+            every test added significant overhead. So I pivoted: instead of creating a new database each time, I clear
+            the existing one before every test.
           </p>
-          
+
+          <p>
+            A SQL script that deletes the data from every table felt clunky and error-prone. I wanted a programmatic
+            approach that automatically picks up new entities, without manual updates to the tests. Below is the
+            solution I arrived at, using EF Core's built-in methods and some reflection.
+          </p>
+
           <SyntaxHighlighter language="csharp" style={coldarkDark}>
             {`
     public async Task ClearDatabase()
@@ -349,7 +376,7 @@ public static class ServiceCollectionExtensions
         foreach (var entityType in dbContext.Model.GetEntityTypes().Where(x => !x.IsOwned()))
         {
             var clrType = entityType.ClrType;
-            
+
             //Use reflection to call the generic Set<TEntity>() method on DbContext
             var method = typeof(DbContext)
                 .GetMethods()
@@ -362,7 +389,7 @@ public static class ServiceCollectionExtensions
             {
                 //dbSet is now an IQueryable which can be used to get all the entities.
                 var entities = dbSet.Cast<object>().ToList();
-                
+
                 //Use RemoveRange to remove all entities of this type
                 dbContext.RemoveRange(entities);
             }
@@ -373,12 +400,17 @@ public static class ServiceCollectionExtensions
             `}
           </SyntaxHighlighter>
 
+          <h2>Wrapping up</h2>
+
           <p>
-            And that is it! You now have an Integration Test that is querying against a Microsoft SQL Server in a
-            docker container. I hope you found this post useful. If you have any comments or thoughts, please feel
-            free to reach out to me via my Contact page.
+            And that's it! You now have integration tests that query a real SQL Server running in a Docker container.
           </p>
+
           <p>
+            I hope you found this post useful. If you have any comments or thoughts, feel free to reach out via my
+            Contact page.
+          </p>
+          <p className="post-signoff">
             Kyle
           </p>
 

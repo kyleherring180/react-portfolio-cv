@@ -115,16 +115,34 @@
     }
   }
 
-  .container.individual-blog-page{
+  // Individual blog posts are long-form reading, unlike the other pages, so they get their own
+  // layout: the whole page area scrolls (body is overflow: hidden, so the container is the
+  // scroller) and the text sits in a centred column capped at a comfortable line length.
+  .container.individual-blog-page {
+    top: 0;
+    height: 100%;
+    overflow-y: auto;
+
+    .text-zone {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 60px 40px 100px;
+      font-family: sans-serif;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: #e8eef2;
+    }
+
     h1 {
       font-size: 48px;
+      line-height: 1.15;
       font-family: 'Coolvetica';
       color: #E62907;
       font-weight: 400;
-      margin-top: 1%;
+      margin: 0 0 48px;
       position: relative;
-      margin-bottom: 40px;
-  
+
       &:before {
         content: '<h1>';
         font-family: 'La Belle Aurore', cursive;
@@ -135,7 +153,7 @@
         opacity: 0.6;
         line-height: 18px;
       }
-  
+
       &:after {
         content: '<h1/>';
         font-family: 'La Belle Aurore', cursive;
@@ -151,86 +169,88 @@
     }
 
     h2 {
-      font-size: 32px;
+      font-size: 30px;
+      line-height: 1.25;
       font-family: 'Coolvetica';
       color: #E62907;
       font-weight: 400;
-      margin-top: 1%;
-      position: relative;
-      margin-bottom: 10px;
-      
+      margin: 56px 0 16px;
     }
-  
+
+    h3 {
+      font-size: 20px;
+      line-height: 1.35;
+      color: #fff;
+      font-weight: 600;
+      margin: 32px 0 8px;
+    }
+
     p {
-      font-size: 18px;
-      color: #fff;
-      font-family: sans-serif;
-      font-weight: 300;
-      max-width: fit-content;
-      animation: pulse 1s;
-      &:nth-of-type(1) {
-        animation-delay: 1.1s;
-      }
-      &:nth-of-type(2) {
-        animation-delay: 1.2s;
-      }
-      &:nth-of-type(3) {
-        animation-delay: 1.3s;
-      }
+      margin: 0 0 1.25em;
     }
-    
+
     ul {
-      font-size: 18px;
-      color: #fff;
-      font-family: sans-serif;
-      font-weight: 300;
-      max-width: fit-content;
-      animation: pulse 1s;
-      &:nth-of-type(1) {
-        animation-delay: 1.1s;
-      }
-      &:nth-of-type(2) {
-        animation-delay: 1.2s;
-      }
-      &:nth-of-type(3) {
-        animation-delay: 1.3s;
+      margin: 0 0 1.25em;
+      padding-left: 1.4em;
+
+      li {
+        margin-bottom: 0.6em;
       }
     }
-    
+
+    strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
     a {
       color: lightskyblue;
+      text-underline-offset: 3px;
     }
 
     .code-highlight {
-      background-color: dodgerblue;
-      padding: 2px 4px;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 2px 6px;
       border-radius: 4px;
-      color: ghostwhite;
+      color: #ffd479;
       font-family: monospace;
-      font-size: 1rem;
-      opacity: 0.6;
+      font-size: 0.85em;
+      white-space: nowrap;
     }
 
-
-    .text-zone {
-      position: absolute;
-      left: 10%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 85%;
-      vertical-align: middle;
-      display: table-cell;
-      max-height: 90%;
-      overflow-y: auto;
+    // react-syntax-highlighter renders a <pre> with inline styles; give it room to breathe
+    // and let wide code scroll sideways instead of stretching the column.
+    pre {
+      margin: 0 0 1.5em !important;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 1.5;
+      overflow-x: auto;
     }
-  
+
+    .callout {
+      margin: 0 0 1.5em;
+      padding: 16px 20px;
+      border-left: 4px solid #E62907;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 0 6px 6px 0;
+
+      p:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .post-signoff {
+      margin-top: 2em;
+    }
+
     .text-animate-hover {
       &:hover {
         color: #fff;
       }
     }
   }
-  
+
   @media screen and (max-width: 1200px) {
     .page {
       top: 50px;
@@ -260,7 +280,28 @@
           margin-bottom: 15px;
         }
       }
-  
+
+      // .page is the scroller at this breakpoint, so the post's container shouldn't be too.
+      &.individual-blog-page {
+        height: auto;
+        overflow: visible;
+
+        .text-zone {
+          height: auto;
+          overflow: visible;
+          font-size: 17px;
+        }
+
+        h1 {
+          font-size: 36px;
+        }
+
+        h2 {
+          font-size: 26px;
+          margin-top: 40px;
+        }
+      }
+
       &.portfolio-page {
         width: 100%;
         padding: 20px;
