@@ -30,7 +30,7 @@ const Blog = () => {
                     <div className="blog-grid">
                         <div>
                             <Link to="/ai-bug-fixing-pipeline-blog">
-                                <Card sx={{backgroundColor: '#0a5775', width: 345, height: '100%', display: 'flex', flexDirection: 'column'}}>
+                                <Card sx={{backgroundColor: '#0a5775', width: '100%', maxWidth: 345, height: '100%', display: 'flex', flexDirection: 'column'}}>
                                     <CardHeader
                                         sx={{color: '#fff'}}
                                         title="Building an Autonomous AI Bug-Fixing Pipeline"
@@ -56,7 +56,7 @@ const Blog = () => {
                         </div>
                         <div>
                             <Link to="/integration-test-blog">
-                                <Card sx={{backgroundColor: '#0a5775', width: 345, height: '100%', display: 'flex', flexDirection: 'column'}}>
+                                <Card sx={{backgroundColor: '#0a5775', width: '100%', maxWidth: 345, height: '100%', display: 'flex', flexDirection: 'column'}}>
                                     <CardHeader
                                         sx={{color: '#fff'}}
                                         title="Integration Tests using Testcontainers for .NET and Microsoft SQL Server"

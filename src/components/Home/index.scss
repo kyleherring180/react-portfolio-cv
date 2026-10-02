@@ -111,6 +111,13 @@
       padding: 10px;
       box-sizing: border-box;
     }
+
+    // Every letter of the heading is its own span, so it can wrap between any two letters.
+    // Scale it with the screen width so "software engineer." always fits on one line.
+    .home-page h1 {
+      font-size: clamp(32px, 11vw, 56px);
+      line-height: 1;
+    }
   
     .home-page .flat-button {
       float: none;
