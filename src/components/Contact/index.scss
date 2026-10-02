@@ -70,6 +70,32 @@
       float: right;
       text-align: center;
       margin-right: 10px;
+      cursor: pointer;
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: default;
+      }
+    }
+
+    // Shown after submit, so skip the delayed entrance animation the other fields use.
+    ul li.form-status {
+      animation: fadeIn 0.4s forwards;
+      padding: 12px 16px;
+      border-radius: 4px;
+      font-family: sans-serif;
+      font-size: 15px;
+      color: #fff;
+
+      &.success {
+        background: rgba(46, 160, 67, 0.25);
+        border-left: 4px solid #2ea043;
+      }
+
+      &.error {
+        background: rgba(230, 41, 7, 0.2);
+        border-left: 4px solid #E62907;
+      }
     }
   }
   

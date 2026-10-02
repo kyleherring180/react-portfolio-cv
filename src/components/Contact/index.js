@@ -7,6 +7,8 @@ import AnimatedLetters from '../AnimatedLetters';
 
 const Contact = () => {
     const [letterClass, setLetterClass] = useState('text-animate')
+    // 'idle' | 'sending' | 'sent' | 'error'
+    const [status, setStatus] = useState('idle')
 
     const form = useRef()
     const emailjs_api_key = process.env.REACT_APP_EMAILJS_API_KEY;
@@ -19,16 +21,17 @@ const Contact = () => {
 
       const sendEmail = (e) => {
         e.preventDefault()
-    
+        setStatus('sending')
+
         emailjs
           .sendForm('service_53cw7mg', 'template_hnxz2gi', form.current, `${emailjs_api_key}`)
           .then(
             () => {
-              alert('Message successfully sent!')
-              window.location.reload(false)
+              form.current.reset()
+              setStatus('sent')
             },
             () => {
-              alert('Failed to send the message, please try again')
+              setStatus('error')
             }
           )
       }
@@ -77,8 +80,23 @@ const Contact = () => {
                             ></textarea>
                             </li>
                             <li>
-                            <input type="submit" className="flat-button" value="SEND" />
+                            <input
+                                type="submit"
+                                className="flat-button"
+                                value={status === 'sending' ? 'SENDING…' : 'SEND'}
+                                disabled={status === 'sending'}
+                            />
                             </li>
+                            {status === 'sent' && (
+                            <li className="form-status success" role="status">
+                                Thanks, your message has been sent. I'll get back to you soon.
+                            </li>
+                            )}
+                            {status === 'error' && (
+                            <li className="form-status error" role="alert">
+                                Something went wrong sending your message. Please try again.
+                            </li>
+                            )}
                         </ul>
                         </form>
                     </div>
