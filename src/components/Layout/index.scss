@@ -253,8 +253,12 @@
   }
 
   @media screen and (max-width: 1200px) {
+    // Sit below the 50px fixed top nav bar. The height has to shrink by the same amount,
+    // otherwise the last 50px of every page hangs off the bottom of the screen and can't
+    // be scrolled to (body is overflow: hidden).
     .page {
       top: 50px;
+      height: calc(100% - 50px);
       overflow: auto;
     }
   
@@ -291,6 +295,12 @@
           height: auto;
           overflow: visible;
           font-size: 17px;
+        }
+
+        // Long identifiers (package names etc.) are wider than a phone, so let them wrap.
+        .code-highlight {
+          white-space: normal;
+          overflow-wrap: anywhere;
         }
 
         h1 {
