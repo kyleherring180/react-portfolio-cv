@@ -16,25 +16,25 @@ const Sidebar = () => (
                 end
                 className={({ isActive }) => (isActive ? 'active home-link' : 'home-link')}
             >
-                <FontAwesomeIcon icon={faHome} color="#4d4d4e" />
+                <FontAwesomeIcon icon={faHome} color="#8d8d8d" />
             </NavLink>
             <NavLink
                 to="/about"
                 className={({ isActive }) => (isActive ? 'active about-link' : 'about-link')}
             >
-                <FontAwesomeIcon icon={faUser} color="#4d4d4e" />
+                <FontAwesomeIcon icon={faUser} color="#8d8d8d" />
             </NavLink>
             <NavLink
                 to="/blog"
                 className={({ isActive }) => (isActive ? 'active blog-link' : 'blog-link')}
             >
-                <FontAwesomeIcon icon={faPen} color="#4d4d4e" />
+                <FontAwesomeIcon icon={faPen} color="#8d8d8d" />
             </NavLink>
             <NavLink
                 to="/contact"
                 className={({ isActive }) => (isActive ? 'active contact-link' : 'contact-link')}
             >
-                <FontAwesomeIcon icon={faEnvelope} color="#4d4d4e" />
+                <FontAwesomeIcon icon={faEnvelope} color="#8d8d8d" />
             </NavLink>
         </nav>
         <ul>
@@ -44,7 +44,7 @@ const Sidebar = () => (
                     rel="noreferrer"
                     href="https://www.linkedin.com/in/kyle-herring-a35288113/"
                 >
-                    <FontAwesomeIcon icon={faLinkedin} color="#4d4d4e" />
+                    <FontAwesomeIcon icon={faLinkedin} color="#8d8d8d" />
                 </a>
             </li>
             <li>
@@ -53,7 +53,7 @@ const Sidebar = () => (
                     rel="noreferrer"
                     href="https://github.com/kyleherring180"
                 >
-                    <FontAwesomeIcon icon={faGithub} color="#4d4d4e" />
+                    <FontAwesomeIcon icon={faGithub} color="#8d8d8d" />
                 </a>
             </li>
         </ul>
