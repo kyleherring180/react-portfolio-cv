@@ -1,24 +1,17 @@
 import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import Sidebar from '../Sidebar/'
+import seo from '../../seo.json'
 import './index.scss'
-
-const SITE_TITLE = 'Kyle Herring – Software Engineer'
-
-const PAGE_TITLES = {
-  '/about': 'About',
-  '/contact': 'Contact',
-  '/blog': 'Blog',
-  '/integration-test-blog': 'Integration Tests using Testcontainers for .NET and Microsoft SQL Server',
-  '/ai-bug-fixing-pipeline-blog': 'Building an Autonomous AI Bug-Fixing Pipeline',
-}
 
 const Layout = () => {
   const { pathname } = useLocation()
 
   useEffect(() => {
-    const pageTitle = PAGE_TITLES[pathname]
-    document.title = pageTitle ? `${pageTitle} | Kyle Herring` : SITE_TITLE
+    // GitHub Pages serves the per-page HTML at /route/, so allow a trailing slash.
+    const route = pathname.replace(/\/+$/, '') || '/'
+    const page = seo.pages.find((p) => p.path === route)
+    document.title = page ? `${page.title} | Kyle Herring` : seo.site.title
   }, [pathname])
 
   return (
